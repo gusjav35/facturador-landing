@@ -168,11 +168,11 @@
         </div>
 
         <div class="price">$29.99</div>
-        <p class="price-subtitle">Licencia única - Sin suscripciones</p>
+        <p class="price-subtitle">Suscripción mensual</p>
 
-        <button class="buy-button" onclick="checkout()">
+        <a href="https://buy.stripe.com/test_28E8wO0roeMibeqfi17ok00" class="buy-button" style="display: block; text-decoration: none; line-height: 1.5;">
             🔒 Comprar Ahora
-        </button>
+        </a>
 
         <div class="test-mode">
             ⚠️ Modo de Prueba - Usa tarjetas de prueba
@@ -187,35 +187,6 @@
     </div>
 
     <script>
-        // Inicializar Stripe con tu Publishable Key
-        const stripe = Stripe('pk_test_51Ss3GIA1k4Mwplg3RRKKVqtpPgErfa0n0SXZRQhLD6NuyOrSeIAe1JN1XjzgJiwzmFaMEa3DjS08GbwfDVI8lh7R001O9m0LAL');
-
-        async function checkout() {
-            try {
-                // Obtener la URL actual sin parámetros
-                const baseUrl = window.location.origin + window.location.pathname;
-
-                // Redirigir a Stripe Checkout
-                const { error } = await stripe.redirectToCheckout({
-                    lineItems: [{
-                        price: 'price_1SucmxA1k4Mwplg3oCSGH5Sc',
-                        quantity: 1,
-                    }],
-                    mode: 'payment',
-                    successUrl: baseUrl + '?success=true',
-                    cancelUrl: baseUrl + '?canceled=true',
-                    customerEmail: '', // Se pedirá en Stripe Checkout
-                });
-
-                if (error) {
-                    alert('Error: ' + error.message);
-                }
-            } catch (err) {
-                alert('Error al procesar el pago');
-                console.error(err);
-            }
-        }
-
         // Mostrar mensaje de éxito/cancelación
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
